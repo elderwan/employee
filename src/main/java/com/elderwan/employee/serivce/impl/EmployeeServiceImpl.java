@@ -60,6 +60,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         ParamsCheckUtils.isNull(employee, "no this employee!");
         employee.setDelFlg(true);
         EmployeesEntity delete = employeesRepository.save(employee);
+        ParamsCheckUtils.isFalse(delete.getDelFlg(),"delete fail!");
         return Response.ok(delete);
     }
 }

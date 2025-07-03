@@ -30,13 +30,13 @@ public class EmployeeController {
     }
 
     @GetMapping("{id}")
-    public Response findEmployeeById(String employeeId){
+    public Response findEmployeeById(@PathVariable("id")String employeeId){
         return FacadeTemplate.template(()->employeeService.findEmployeeById(employeeId));
 
     }
 
     @DeleteMapping("{id}")
-    public Response deleteEmployee(String employeeId){
+    public Response deleteEmployee(@PathVariable("id")String employeeId){
         return FacadeTemplate.template(()->employeeService.deleteEmployee(employeeId));
     }
 
