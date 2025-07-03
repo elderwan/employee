@@ -10,18 +10,19 @@ import org.hibernate.annotations.GenericGenerator;
 public class EmployeesEntity {
 
     @Id
-    @GeneratedValue(generator = "snowflake")
-    @GenericGenerator(name = "snowflake", strategy = "com.elderwan.employee.utils.HutoolSnowflakeIdGenerator")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @GeneratedValue(generator = "snowflake")
-    @GenericGenerator(name = "snowflake", strategy = "com.elderwan.employee.utils.HutoolStringSnowflakeIdGenerator")
+    @Column(name = "employee_id", nullable = false)
     private String employeeId;
+    @Column(name = "first_name")
     private String firstName;
+    @Column(name = "last_name")
     private String lastName;
+    @Column(name = "email_name", nullable = false)
     private String email;
+    @Column(name = "del_flg", nullable = false, columnDefinition = "TINYINT(1) default 0")
     private Boolean delFlg;
-
 
 
 }
