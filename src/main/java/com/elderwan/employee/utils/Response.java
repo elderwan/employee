@@ -63,16 +63,16 @@ public class Response<T> {
      * @author changle
      */
     public static class Msg {
-        public static final String SUCCESS = "操作成功！";
-        public static final String FAILED = "操作失败！";
+        public static final String SUCCESS = "success！";
+        public static final String FAILED = "fail！";
         /**
          * 错误信息：内部异常
          */
-        public static final String ERROR = "内部异常！";
-        public static final String THROWABLE = "系统异常！";
+        public static final String ERROR = "error！";
+        public static final String THROWABLE = "system error！";
         /**
          * 错误信息：重复操作
          */
-        public static final String REPEAT_ERROR = "请勿重复操作！";
+        public static final String REPEAT_ERROR = "pls no repeat！";
     }
 }

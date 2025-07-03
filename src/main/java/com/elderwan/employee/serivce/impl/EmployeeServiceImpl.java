@@ -1,5 +1,6 @@
 package com.elderwan.employee.serivce.impl;
 
+import cn.hutool.core.util.IdUtil;
 import com.elderwan.employee.converter.EmployeeConverter;
 import com.elderwan.employee.dto.EmployeesDTO;
 import com.elderwan.employee.entity.EmployeesEntity;
@@ -23,16 +24,19 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public Response createEmployee(EmployeesDTO dto) {
+        //create EmployeeId
+        dto.setEmployeeId(IdUtil.getSnowflake().nextIdStr());
+        //save
         EmployeesEntity save = employeesRepository.save(employeeConverter.toEmployeesEntity(dto));
-        ParamsCheckUtils.isNull(save,"can not create employee now");
+        ParamsCheckUtils.isNull(save, "can not create employee now");
         return Response.ok(employeeConverter.toEmployeesDTO(save));
     }
 
     @Override
     public Response updateEmployee(String employeeId, EmployeesDTO dto) {
         EmployeesEntity employee = employeesRepository.findByEmployeeId(employeeId);
-        ParamsCheckUtils.isNull(employee,"no this employee!");
-        employeeConverter.updateEntityFromDto(dto,employee);
+        ParamsCheckUtils.isNull(employee, "no this employee!");
+        employeeConverter.updateEntityFromDto(dto, employee);
         EmployeesEntity updateEntity = employeesRepository.save(employee);
         return Response.ok(employeeConverter.toEmployeesDTO(updateEntity));
     }
@@ -46,13 +50,16 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public Response findEmployeeById(String employeeId) {
         EmployeesEntity employee = employeesRepository.findByEmployeeId(employeeId);
-        ParamsCheckUtils.isNull(employee,"no this employee!");
+        ParamsCheckUtils.isNull(employee, "no this employee!");
         return Response.ok(employeeConverter.toEmployeesDTO(employee));
     }
 
     @Override
     public Response deleteEmployee(String employeeId) {
-
-        return null;
+        EmployeesEntity employee = employeesRepository.findByEmployeeId(employeeId);
+        ParamsCheckUtils.isNull(employee, "no this employee!");
+        employee.setDelFlg(true);
+        EmployeesEntity delete = employeesRepository.save(employee);
+        return Response.ok(delete);
     }
 }

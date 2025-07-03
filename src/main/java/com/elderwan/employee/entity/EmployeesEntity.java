@@ -3,10 +3,12 @@ package com.elderwan.employee.entity;
 import jakarta.persistence.*;
 import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Where;
 
 @Data
 @Entity
 @Table(name = "employees")
+@Where(clause = "del_flg = false")
 public class EmployeesEntity {
 
     @Id
@@ -22,7 +24,7 @@ public class EmployeesEntity {
     @Column(name = "email_name", nullable = false)
     private String email;
     @Column(name = "del_flg", nullable = false, columnDefinition = "TINYINT(1) default 0")
-    private Boolean delFlg;
+    private Boolean delFlg = false;
 
 
 }
