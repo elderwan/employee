@@ -7,6 +7,7 @@ import com.elderwan.employee.utils.Response;
 import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin("*")
 @RestController
 @RequestMapping("/employee")
 public class EmployeeController {

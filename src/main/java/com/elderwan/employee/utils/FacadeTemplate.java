@@ -1,8 +1,8 @@
 package com.elderwan.employee.utils;
 
+import com.elderwan.employee.exception.EmployeeException;
 import lombok.extern.slf4j.Slf4j;
 
-import java.util.List;
 import java.util.function.Supplier;
 
 @Slf4j

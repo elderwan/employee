@@ -1,5 +1,6 @@
-package com.elderwan.employee.utils;
+package com.elderwan.employee.exception;
 
+import com.elderwan.employee.utils.Response;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
